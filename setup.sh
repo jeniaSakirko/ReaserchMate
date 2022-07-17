@@ -4,7 +4,7 @@
 
 # Install Pipenv, the -n option makes sudo fail instead of asking for a
 # password if we don't have sufficient privileges to run it
-sudo -n dnf install -y pipenv
+sudo -n dnf install -y pipenv npm
 
 cd /vagrant
 # Install dependencies with Pipenv
@@ -17,4 +17,8 @@ pipenv run python manage.py migrate
 # run our app. setsit, the parentheses and "&" are used to perform a "double
 # fork" so that out app stays up after the setup script finishes.
 # The app logs are redirected to the `runserver.log` file.
-(setsid pipenv run python manage.py runserver 0.0.0.0:8000 > runserver.log 2>&1 &)
+(setsid pipenv run python manage.py runserver 0.0.0.0:8000 > runserver_backend.log 2>&1 &)
+
+cd ../frontend
+
+(setsid npm start > runserver_frontend.log 2>&1 &)

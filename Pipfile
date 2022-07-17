@@ -8,6 +8,7 @@ django = "*"
 django-rest-framework = "*"
 django-cors-headers = "*"
 "backports.weakref" = "*"
+npm = "*"
 
 [dev-packages]
 flake8 = "*"
