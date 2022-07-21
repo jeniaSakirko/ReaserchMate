@@ -37,9 +37,9 @@ class TestParticipantModel:
 
     def test_get_by_id(self, participant_fixture, participant_data):
         result = Participant.get_by_id(participant_fixture.id)
-        assert result.user.email == participant_fixture.user.email
-        assert result.user.username == participant_fixture.user.username
-        assert result.user.password == participant_fixture.user.password
-        assert result.first_name == participant_fixture.first_name
-        assert result.last_name == participant_fixture.last_name
-        assert result.phone_number == participant_fixture.phone_number
+        assert result.base_user.user.email == participant_fixture.base_user.user.email
+        assert result.base_user.user.username == participant_fixture.base_user.user.username
+        assert result.base_user.user.password == participant_fixture.base_user.user.password
+        assert result.base_user.user.first_name == participant_fixture.base_user.user.first_name
+        assert result.base_user.user.last_name == participant_fixture.base_user.user.last_name
+        assert result.base_user.phone_number == participant_fixture.base_user.phone_number

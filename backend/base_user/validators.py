@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.core.validators import validate_email
 
 
-class ValidateUser:
+class ValidateBaseUser:
     def __init__(self, email, username, password, first_name, last_name, phone_number):
         self.email = email
         self.username = username

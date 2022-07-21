@@ -1,21 +1,19 @@
 from django.db import models
-from django.contrib.auth.models import User
+from base_user.models import BaseUser
 from research.models import Research
-from validators import ValidateUser
+
+
+# from validators import ValidateUser
 
 
 class Researcher(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=255, blank=True)
-    last_name = models.CharField(max_length=255, blank=True)
-    phone_number = models.IntegerField(null=True, blank=True)
+    base_user = models.OneToOneField(BaseUser, on_delete=models.CASCADE)
 
     @staticmethod
     def create(email, username, password, first_name, last_name, phone_number):
-        ValidateUser(email=email, username=username, password=password, first_name=first_name,
-                     last_name=last_name, phone_number=phone_number).start_validation()
-        res = Researcher(user=User.objects.create_user(email=email, username=username, password=password),
-                         first_name=first_name, last_name=last_name, phone_number=phone_number)
+        res = Researcher(base_user=BaseUser.create(email=email, username=username, password=password,
+                                                   first_name=first_name, last_name=last_name,
+                                                   phone_number=phone_number))
         res.save()
         return res
 
